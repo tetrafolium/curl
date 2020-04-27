@@ -56,5 +56,6 @@ size_t Curl_dyn_len(struct dynbuf *s);
 #define DYN_APRINTF         8000000
 #define DYN_RTSP_REQ_HEADER (64*1024)
 #define DYN_TRAILERS        (64*1024)
+#define DYN_PROXY_CONNECT_HEADERS 16384
 
 #endif
