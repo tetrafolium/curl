@@ -124,6 +124,30 @@ void Curl_dyn_reset(struct dynbuf *s)
 }
 
 /*
+ * Specify the size of the tail to keep (number of bytes from the end of the
+ * buffer). The rest will be dropped.
+ */
+CURLcode Curl_dyn_tail(struct dynbuf *s, size_t trail)
+{
+  DEBUGASSERT(s);
+  DEBUGASSERT(s->init == DYNINIT);
+  DEBUGASSERT(!s->leng || s->bufr);
+  if(trail > s->leng)
+    return CURLE_BAD_FUNCTION_ARGUMENT;
+  else if(trail == s->leng)
+    return CURLE_OK;
+  else if(!trail) {
+    Curl_dyn_reset(s);
+  }
+  else {
+    memmove(&s->bufr[0], &s->bufr[s->leng - trail], trail);
+    s->leng = trail;
+  }
+  return CURLE_OK;
+
+}
+
+/*
  * Appends a buffer with length.
  */
 CURLcode Curl_dyn_addn(struct dynbuf *s, const void *mem, size_t len)

@@ -48,6 +48,14 @@ Append a `printf()`-style string to the end of the buffer.
 
 Reset the buffer length, but leave the allocation.
 
+## tail
+
+    CURLcode Curl_dyn_trail(struct dynbuf *s, size_t length)
+
+Keep `length` bytes of the buffer tail (the last `length` bytes of the
+buffer). The rest of the buffer is dropped. The specified `length` must not be
+larger than the buffer length.
+
 ## ptr
 
     char *Curl_dyn_ptr(struct dynbuf *s);
