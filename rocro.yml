@@ -1,4 +1,4 @@
 inspecode:
-  fortify:
+  coverity:
     machine:
       cpu: 2
