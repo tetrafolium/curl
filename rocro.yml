@@ -1,4 +1,4 @@
 inspecode:
   coverity:
-    machine:
-      cpu: 2
+#    machine:
+#      cpu: 2
